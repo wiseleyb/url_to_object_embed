@@ -1,0 +1,88 @@
+UrlToObjectEmbed
+================
+
+For use in editors where you don't want to allow object tags and/or html.  Just get the url from the user and use this to create the object-html code.
+Currently only fully supports YouTube and partially supports Vimeo
+
+
+Example
+=======
+
+script/plugin install git://github.com/wiseleyb/url_to_object_embed.git
+
+UrlToObjectEmbed::YouTube.get_object_html("http://www.youtube.com/watch?v=37Ro7irBbSw")
+
+	returns: 
+	<object width="425" height="344">
+	  <param name="movie" value="http://www.youtube.com/v/37Ro7irBbSw&rel=0&fs=1"></param>
+	  <param name="allowFullScreen" value="true"></param>
+	  <param name="allowscriptaccess" value="false"></param>
+	  <embed src="http://www.youtube.com/v/37Ro7irBbSw&rel=0&fs=1" 
+	    type="application/x-shockwave-flash" 
+	    allowscriptaccess="false" 
+	    allowfullscreen="true" 
+	    width="425" height="344"></embed>
+	</object>
+
+UrlToObjectEmbed::Vimeo.get_object_html("http://vimeo.com/9164451")
+
+	returns:
+
+	<object width="425" height="239">
+	  <param name="allowfullscreen" value="true" />
+	  <param name="allowscriptaccess" value="always" />
+	  <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=9164451&amp;server=vimeo.com&amp;fullscreen=1" />
+	  <embed src="http://vimeo.com/moogaloop.swf?clip_id=9164451&amp;server=vimeo.com&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="425" height="239"></embed>
+	</object>
+
+You can also use the Generic class and it will try to guess the output from the url.  If it can't, it'll just return the URL
+
+	UrlToObjectEmbed::Generic.get_object_html("http://www.youtube.com/watch?v=37Ro7irBbSw")
+
+	returns: 
+	<object width="425" height="344">
+	  <param name="movie" value="http://www.youtube.com/v/37Ro7irBbSw&rel=0&fs=1"></param>
+	  <param name="allowFullScreen" value="true"></param>
+	  <param name="allowscriptaccess" value="false"></param>
+	  <embed src="http://www.youtube.com/v/37Ro7irBbSw&rel=0&fs=1" 
+	    type="application/x-shockwave-flash" 
+	    allowscriptaccess="false" 
+	    allowfullscreen="true" 
+	    width="425" height="344"></embed>
+	</object>
+
+	UrlToObjectEmbed::Generic.get_object_html("http://www.theonion.com")
+
+	returns:
+	http://www.theonion.com
+
+You can also pass in predefined sizes:  :small, :medium (default), :large, :xlarge - I've been trying to keep scaling consistent to YouTubes width
+
+UrlToObjectEmbed::Generic.get_object_html("http://www.youtube.com/watch?v=37Ro7irBbSw", {:size => :large})
+
+	returns:
+	<object width="480" height="385">
+	  <param name="movie" value="http://www.youtube.com/v/37Ro7irBbSw&rel=0&fs=1"></param>
+	  <param name="allowFullScreen" value="true"></param>
+	  <param name="allowscriptaccess" value="false"></param>
+	  <embed src="http://www.youtube.com/v/37Ro7irBbSw&rel=0&fs=1" 
+	    type="application/x-shockwave-flash" 
+	    allowscriptaccess="false" 
+	    allowfullscreen="true" 
+	    width="480" height="385"></embed>
+	</object>
+
+
+TODO
+==================================
+unit tests
+other sites
+
+
+CONTACT
+==================================
+wiseleyb at gmail dot com
+
+
+	
+Copyright (c) 2010 [name of plugin creator], released under the MIT license
