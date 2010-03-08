@@ -3,10 +3,15 @@ module UrlToObjectEmbed
   class YouTube < UrlToObjectEmbedBase
 
     SIZES = {:small => [320,265],
+             :small_hd => [500,315],
              :medium => [425,344],
+             :medium_hd => [580,360],
              :large => [480,385],
-             :xlarge => [640,505]
+             :large_hd => [660,405],
+             :xlarge => [640,505],
+             :xlarge_hd => [873,525]
             }
+
     
     def self.get_object_html(url, options = {})
       url.gsub!("watch?v=","v/")
